@@ -1,0 +1,77 @@
+<!doctype html>
+<html th:fragment="layout (template, menu)">
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min-jsf.css}" />
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap-jsf.css}" />
+  <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css} " />
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.css}" />
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}" />
+  <link th:rel="stylesheet" th:href="@{/resources/css/w3.css}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pbs.twimg.com/profile_images/1332407797816889344/zPAZdi-x.jpg">
+	<title>Bienvenido a la API CRM</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">CRM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <th:block th:if="${session.user!=null}">
+              <li class="nav-item">
+                <a class="nav-link" href="/app/info">Información</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/app/dashboard/">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/jasper/repfacturas/">Reporte de Clientes</a>
+              </li>
+            </th:block>
+          </ul>      
+          <ul class="nav navbar-nav navbar-right">
+            <th:block th:if="${session.user==null}">
+                <a href="/app/login" class="btn btn-primary btn-block">Iniciar Sesión</a>
+            </th:block>  
+            <th:block th:if="${session.user!=null}">
+              <li><a href="/app/logout"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>
+            </th:block>
+          </ul>
+        </div>
+    </nav> 
+    
+    <div class="container-fluid">
+      <div class="container xd-container">
+  
+        <th:block th:include="${template}" />
+        <br>
+  
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+                Copyright &copy; 2021 &mdash; CRM
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery-ui/jquery-ui.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap-datepicker/js/bootstrap-datepicker.min.js}"></script>
+    <script th:src="@{/webjars/jquery.inputmask/jquery.inputmask.min.js}"></script>    
+
+  </body>
+  
+  </html>

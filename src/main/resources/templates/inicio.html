@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'home')}"
+>
+  <body>
+    <section class="h-100">
+      <th:block th:if="${session.user!=null}">
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <p th:text="${mensaje}"></p>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </th:block>
+      <th:block th:if="${session.user==null}">
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <p>Sesion no iniciada.</p>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </th:block>
+      <div class="container h-100">
+        <div class="jumbotron">
+          <h1 class="display-4">Bienvenido a la API crm</h1>
+          <p class="lead">
+            En esta API se puede observar las tendencias actuales de la crm mediante representaciones graficas
+          </p>
+          <hr class="my-4" />
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/app/dashboard/">Ir a los dashboards</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
